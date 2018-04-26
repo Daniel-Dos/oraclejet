@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-define(['ojs/ojcore','knockout', 'jquery', 'factories/CountryFactory', 'ojs/ojcollectiontabledatasource','ojs/ojtable','ojs/ojbutton','ojs/ojmodel'],
+define(['ojs/ojcore', 'knockout', 'jquery', 'factories/CountryFactory','ojs/ojmodel', 'ojs/ojcollectiontabledatasource', 
+    'ojs/ojtable', 'ojs/ojbutton'],
 function (oj, ko, $,CountryFactory) {
 
     function TabelaModel() {
         var self = this;
-        self.list = ko.observable();
+        self.list = CountryFactory.createCountryCollection();
         self.datasource = ko.observable();
         
         /*
@@ -21,15 +22,31 @@ function (oj, ko, $,CountryFactory) {
          *  
          *  https://docs.oracle.com/middleware/jet112/jet/developer/GUID-808434E0-CA80-405C-9450-59E0BF525700.htm#JETDG335
          */
-        self.initialize = function () {
-            self.list = CountryFactory.createCountryCollection();
-            self.datasource(new oj.CollectionTableDataSource(this.list));
-             self.list.fetch();
-        }
+//        self.initialize = function () {
+//            self.list = CountryFactory.createCountryCollection();
+//            self.datasource(new oj.CollectionTableDataSource(this.list));
+//             self.list.fetch();
+//        }
+//        
+//        
+     self.datasource(new oj.CollectionTableDataSource(self.list));
+        initialize = function(params) {
+          var customerId = oj.Router.rootInstance.retrieve();
+          if(customerId !== undefined && customerId !== null) {
+              self.customerToSynchPromise = self.list.get(customerId);
+              self.customerToSynchPromise.then(function (customerToSynch) {
+                  customerToSynch.fetch();
+              });
+          }
+      };
         // função que redireciona para outra tela/rota
         self.onClickAdd = function() {
              oj.Router.rootInstance.store(-1);
              oj.Router.rootInstance.go("addUsuario");
+        };
+        
+        self.delete = function(parent, id) {
+            self.res
         }
     }
     return new TabelaModel();
