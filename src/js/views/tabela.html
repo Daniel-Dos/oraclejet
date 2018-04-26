@@ -12,13 +12,13 @@ and open the template in the editor.
     </head>
     <body>
         <div>
-             <br /> <br />
+            <br /> <br />
             <button data-bind="ojComponent: {
                         component: 'ojButton', 
                         label: 'Adicionar novo Usuário'},
                         click: onClickAdd
-                       ">
-            
+                    ">
+
             </button>
             <br /> <br />
             <table data-bind="ojComponent: {component: 'ojTable',
@@ -28,7 +28,9 @@ and open the template in the editor.
                     {headerText: 'ID', field: 'id'},
                     {headerText: 'NOME', field: 'nome'},
                     {headerText: 'EMAIL', field: 'email'},
-                    {headerText: 'DESCRIÇÃO', field: 'descricao'}
+                    {headerText: 'DESCRIÇÃO', field: 'descricao'},
+                    {headerText: 'Ações', field: 'operations'},
+                    {rowTemplate: 'row_template'},
                 ]}">
 
             </table>
