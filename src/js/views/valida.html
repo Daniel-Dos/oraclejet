@@ -1,0 +1,25 @@
+<h3>exemplo 1 : default html5 data input </h3>
+
+<div>
+    <input type='date' />
+</div>
+
+
+<h3>exemplo 2 : default ojInputDate. </h3>
+
+<div>
+    <oj-input-date value='{{date}}' converter='{{dataConverter}}' />
+</div>
+
+<h3>exemplo 3 : ojInputDate com converter defaul </h3>
+
+<div>
+   <oj-input-date value='{{date}}'
+                  date-picker.week-display='number'
+                  converter='{
+                  "type":"datetime",
+                  "options": {"year":"numeric","month":"long", "day":"numeric"}}'/>
+</div>
+
+
+

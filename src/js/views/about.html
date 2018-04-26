@@ -1,0 +1,67 @@
+<!--
+ Copyright (c) 2014, 2018, Oracle and/or its affiliates.
+ The Universal Permissive License (UPL), Version 1.0
+-->
+<div class="oj-hybrid-padding">
+    <h1>About Content Area</h1>
+
+    <!--  <oj-status-meter-gauge
+          id="gauge10"
+          min="0"
+          max="100"
+          value="{{value10}}" 
+      orientation="circular"
+      label="[[label]]"
+      style="align:center; margin-top:5px; margin-bottom:5px; height:100px; width:45%;">
+    </oj-status-  meter-gauge>-->
+
+<!--    <oj-table id='table' aria-label='Departments Table'
+              data='[[datasource]]'
+              columns-default.sortable='disabled'
+              columns='[{"headerText": "Department Id", 
+              "field": "DeparmentId",
+              "headerClassName": "oj-sm-only-hide",
+              "className": "oj-sm-only-hide",
+              "resizable": "enabled"},
+              {"headerText": "Department Name", 
+              "field": "DeparmentName",
+              "resizable": "enabled"},
+              {"headerText": "Location Id", 
+              "field": "LocationId",
+              "headerClassName": "oj-sm-only-hide",
+              "className": "oj-sm-only-hide",
+              "resizable": "enabled"},
+              {"headerText": "Manager Id", 
+              "field": "ManagerId",
+              "resizable": "enabled"}]'>
+    </oj-table>-->
+    
+    
+    
+    <table data-bind="ojComponent: {component: 'ojTable', 
+            data: datasource,
+            columns: [
+                {headerText: 'descricao', field: 'descricao'},
+                {headerText: 'email', field: 'email'},
+                {headerText: 'leader', field: 'leader'},
+                {headerText: 'nome', field: 'nome'},
+                 {headerText: 'id', field: 'id'}
+            ]
+        }">
+        
+        <div id="form-container" data-bind="with: modelo">
+        
+             Nome : <input id="inputcontrol" data-bind="ojComponent: {component: 'ojInputText', value: attributes.nome}">
+              descricao : <input id="inputcontrol" data-bind="ojComponent: {component: 'ojInputText', value: attributes.descricao}">
+               email : <input id="inputcontrol" data-bind="ojComponent: {component: 'ojInputText', value: attributes.email}">
+                leader : <input id="inputcontrol" data-bind="ojComponent: {component: 'ojInputText', value: attributes.leader}">
+          <br />
+          <button id="buttonIcon2"  data-bind="click: saveCustomer, 
+                                        ojComponent: {
+                                            component:'ojButton', 
+                                            icons: {start:'oj-fwk-icon oj-fwk-icon-checkmark'}, 
+                                            label: 'Save'
+                                        }">
+        </div>
+</table>
+</div>

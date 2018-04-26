@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Pedestrians",
+        "items": [
+            42
+        ]
+    },
+    {
+        "name": "Vehicles",
+        "items": [
+            55
+        ]
+    },
+    {
+        "name": "Bicycles",
+        "items": [
+            36
+        ]
+    },
+    {
+        "name": "Buses",
+        "items": [
+            22
+        ]
+    },
+    {
+        "name": "Trains",
+        "items": [
+            22
+        ]
+    }
+]

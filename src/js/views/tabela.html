@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Tabela </title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>
+             <br /> <br />
+            <button data-bind="ojComponent: {
+                        component: 'ojButton', 
+                        label: 'Adicionar novo Usuário'},
+                        click: onClickAdd
+                       ">
+            
+            </button>
+            <br /> <br />
+            <table data-bind="ojComponent: {component: 'ojTable',
+                rootAttributes: {'style':'width: 100%; height:100%;'},
+                data: datasource,
+                columns: [
+                    {headerText: 'ID', field: 'id'},
+                    {headerText: 'NOME', field: 'nome'},
+                    {headerText: 'EMAIL', field: 'email'},
+                    {headerText: 'DESCRIÇÃO', field: 'descricao'}
+                ]}">
+
+            </table>
+        </div>
+    </body>
+</html>

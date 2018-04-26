@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Adicionado Usuario</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+
+        <div style="width: 1px; min-width: 100%;" data-bind="with: modelo">
+            <div id="form" >
+                <fieldset >
+                    <legend>Dados:</legend>
+
+                    Nome : <input id="inputcontrol" data-bind="ojComponent: {component: 'ojInputText', value: attributes.nome}"><br />
+                    descricao : <input id="inputcontrol" data-bind="ojComponent: {component: 'ojInputText', value: attributes.descricao}"><br />
+                    email : <input id="inputcontrol" data-bind="ojComponent: {component: 'ojInputText', value: attributes.email}"><br />
+                    <br /> <br />
+                    <button data-bind="ojComponent: {component: 'ojButton', label:'Salvar'}, click: onclickSalvar"></button>
+                    </oj-form-layout>
+                </fieldset>
+            </div>
+
+        </div>
+    </body>
+</html>
