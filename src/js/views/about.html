@@ -1,11 +1,11 @@
 <!--
  Copyright (c) 2014, 2018, Oracle and/or its affiliates.
  The Universal Permissive License (UPL), Version 1.0
-
+-->
 <div class="oj-hybrid-padding">
     <h1>About Content Area</h1>
 
-      <oj-status-meter-gauge
+    <!--  <oj-status-meter-gauge
           id="gauge10"
           min="0"
           max="100"
@@ -13,9 +13,9 @@
       orientation="circular"
       label="[[label]]"
       style="align:center; margin-top:5px; margin-bottom:5px; height:100px; width:45%;">
-    </oj-status-  meter-gauge>
+    </oj-status-  meter-gauge>-->
 
-    <oj-table id='table' aria-label='Departments Table'
+<!--    <oj-table id='table' aria-label='Departments Table'
               data='[[datasource]]'
               columns-default.sortable='disabled'
               columns='[{"headerText": "Department Id", 
@@ -34,7 +34,7 @@
               {"headerText": "Manager Id", 
               "field": "ManagerId",
               "resizable": "enabled"}]'>
-    </oj-table>
+    </oj-table>-->
     
     
     
@@ -64,55 +64,4 @@
                                         }">
         </div>
 </table>
-</div>-->
-
-
-
-
-<div class="oj-flex oj-header-border">
-    <div class="oj-flex-item">
-        <div style="padding: 5px;"></div>
-        <h2 class="oj-sm-float-start">Customers</h2>
-        <div class="oj-sm-float-end" id='buttons-container'>    
-          <button id="addCust" data-bind= "ojComponent: {component: 'ojButton', 
-                                                                           icons: {end:'oj-fwk-icon-caret-end oj-fwk-icon'}, 
-                                                                           label: 'Add Customer'}">
-          </button>
-        </div>
-    </div> 
 </div>
-<table id="customers"
-      summary="Customer Table"
-      aria-label="Customers Table"
-      data-bind="ojComponent: {component:'ojTable',
-                               data: datasource,
-                               rootAttributes: {'style':'width: 100%; height:100%;'},
-                               columns: [{headerText: 'Employee ID', field: 'id'},
-                                         {headerText: 'First Name', field: 'nome'},
-                                         {headerText: 'Last Name', field: 'descricao'},
-                                         {headerText: 'Email', field: 'email', headerClassName: 'oj-sm-only-hide', className: 'oj-sm-only-hide'},
-                                         {headerText: 'Actions', field: 'operations'}],
-                               rowTemplate: 'row_template'}">
-</table>
-
-</div>
-<script type="text/html" id="row_template">
-  <tr>
-    <td data-bind="text: id"></td> 
-    <td data-bind="text: nome"></td>
-    <td data-bind="text: descricao"></td>
-    <td data-bind="text: email"></td>
-    <td>
-      <button data-bind="click: function() {$parent.editCustomer(EmployeeId) }, ojComponent: {component: 'ojButton',
-                                                                                              display: 'icons', 
-                                                                                              icons: {end: 'oj-fwk-icon-caret-end oj-fwk-icon'},
-                                                                                              label: 'Edit'}">
-      </button>
-      <button data-bind="click: function() {$parent.deleteCustomer($parent, EmployeeId)}, ojComponent: {component: 'ojButton', 
-                                                                                                   display: 'icons', 
-                                                                                                   icons: {end:'demo-garbage-icon-24 demo-icon-font-24'},
-                                                                                                   label: 'Remove'}">
-      </button>
-    </td>
-  </tr>
-</script>
