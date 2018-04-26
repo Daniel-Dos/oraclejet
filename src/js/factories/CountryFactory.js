@@ -25,7 +25,16 @@ define(['ojs/ojcore'], function (oj) {
                 idAttribute: "id"
             });
             return new Countries();
+        },
+        
+         deletar: function () {
+            var Country = oj.Model.extend({
+                urlRoot: this.resorceURL + 'deletar',
+                idAttribute: "id"
+            });
+            return new Country();
         }
+        
     };
     return CountryFactory;
 });
