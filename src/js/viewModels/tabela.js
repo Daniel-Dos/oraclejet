@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-define(['ojs/ojcore','knockout', 'jquery', 'factories/CountryFactory', 'ojs/ojcollectiontabledatasource','ojs/ojtable'],
+define(['ojs/ojcore','knockout', 'jquery', 'factories/CountryFactory', 'ojs/ojcollectiontabledatasource','ojs/ojtable','ojs/ojbutton','ojs/ojmodel'],
 function (oj, ko, $,CountryFactory) {
 
     function TabelaModel() {
