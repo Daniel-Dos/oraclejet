@@ -1,0 +1,63 @@
+<div id="componentDemoContent" style="width: 1px; min-width: 100%;" data-bind="with: usuario">
+
+    <div id="form-container">
+        <div class="oj-form-layout">
+            <div class="oj-form oj-sm-odd-cols-12 oj-md-odd-cols-4 oj-md-labels-inline">  
+                <div class="oj-flex">  
+                    <div class="oj-flex-item">
+                        <oj-label for="nome">Nome:</oj-label>
+                    </div>
+                    <div class="oj-flex-item">
+                        <oj-input-text id="nome" value="{{attributes.nome}}"></oj-input-text>
+                    </div>
+                </div>
+                <div class="oj-flex"> 
+                    <div class="oj-flex-item">
+                        <oj-label for="email">E-mail:</oj-label>
+                    </div>
+                    <div class="oj-flex-item">
+                        <oj-input-text id="email" value="{{attributes.email}}" ></oj-text-area>
+                    </div>
+                </div>
+                <div class="oj-flex"> 
+                    <div class="oj-flex-item">
+                        <oj-label  for="descricao">Descrição:</oj-label>
+                    </div>
+                    <div class="oj-flex-item">
+                        <oj-input-text id="descricao" value="{{attributes.descricao}}" </oj-input-text>
+                    </div>
+                    <div class="oj-sm-float-end" id='buttons-container'>
+<!--                        <button id="btnSave"  data-bind="click: saveCustomer, 
+                                        ojComponent: {
+                                            component:'ojButton', 
+                                            icons: {start:'oj-fwk-icon oj-fwk-icon-checkmark'}, 
+                                            label: 'Save',
+                                            disabled: saveBtnBusyCheck
+                                        }">
+                        </button>-->
+                    </div>  
+                </div>
+            </div>    
+        </div>
+    </div>
+</div>
+
+<!--<style >
+
+    #botao{ text-align: center }
+    .botaoEnviar{
+
+        right: 0;
+        margin-left:  440px;
+        bottom:0;
+        margin-bottom: 12px;
+        width: 300px;
+        text-align: center;
+        padding: 5px 20px;
+        border: 1px solid #eee;
+        border-radius: 6px;
+        background-color: #FCC302;
+        font-size: 18px;
+    }
+</style>-->
+

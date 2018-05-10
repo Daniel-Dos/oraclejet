@@ -27,7 +27,8 @@ define(['ojs/ojcore', 'knockout', 'ojs/ojrouter', 'ojs/ojknockout', 'ojs/ojarray
                     'valida': {label: 'Valida'},
                     'about': {label: 'About'},
                     'tabela':{label:' Tabela'},
-                    'addUsuario':{label: 'AddUsuario'}
+                    'addUsuario':{label: 'AddUsuario'},
+                    'editUsuario':{label: 'EditUsuario'}
                 });
                 oj.Router.defaults['urlAdapter'] = new oj.Router.urlParamAdapter();
 

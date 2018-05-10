@@ -3,35 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-define(['ojs/ojcore', 'knockout', 'jquery', 'factories/CountryFactory', 'ojs/ojmodel', 'ojs/ojcollectiontabledatasource',
-    'ojs/ojtable', 'ojs/ojbutton'],
-        function (oj, ko, $, CountryFactory) {
+define(['ojs/ojcore', 'knockout', 'factories/customerController', 'jquery', 'ojs/ojmodel', 'ojs/ojcollectiontabledatasource',
+    'ojs/ojtable', 'ojs/ojbutton', 'ojs/ojpagingcontrol'],
+        function (oj, ko, customerController) {
 
-            function TabelaModel() {
+            function CustomerViewModel() {
                 var self = this;
-                self.list = CountryFactory.createCountryCollection();
-                self.remover = CountryFactory.deletar();
-                self.datasource = ko.observable();
+                self.list = customerController.createCustomerCollection();
+                self.customers = ko.observable();
+                self.customerModel = ko.observable();
+                self.deletaa = customerController.createCustomerDelete();
 
-                /*
-                 *  exemplo de código a seguir cria um objeto de coleta para todo o seu conjunto de dados (ou lista) de registros 
-                 *  de tarefas e vincula isso a uma instância específica de um modelo de registro de tarefa. O método fetch () 
-                 *  informa a coleção para ir ao serviço de dados e recuperar de forma assíncrona o conjunto de dados dos 
-                 *  serviços de dados usando a URL fornecida, por meio de chamadas do jQuery AJAX. 
-                 *  O método de retorno de chamada de sucesso do aplicativo é chamado quando a chamada é 
-                 *  retornada com êxito e a coleta é preenchida com registros de modelo.
-                 *  
-                 *  https://docs.oracle.com/middleware/jet112/jet/developer/GUID-808434E0-CA80-405C-9450-59E0BF525700.htm#JETDG335
-                 */
-//        self.initialize = function () {
-//            self.list = CountryFactory.createCountryCollection();
-//            self.datasource(new oj.CollectionTableDataSource(this.list));
-//             self.list.fetch();
-//        }
-//        
-//        
-                self.datasource(new oj.CollectionTableDataSource(self.list));
-                initialize = function (params) {
+                self.customers(new oj.CollectionTableDataSource(self.list));
+
+                self.initialize = function (params) {
                     var customerId = oj.Router.rootInstance.retrieve();
                     if (customerId !== undefined && customerId !== null) {
                         self.customerToSynchPromise = self.list.get(customerId);
@@ -40,16 +25,86 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'factories/CountryFactory', 'ojs/ojm
                         });
                     }
                 };
-                // função que redireciona para outra tela/rota
-                self.onClickAdd = function () {
-                    oj.Router.rootInstance.store(-1);
-                    oj.Router.rootInstance.go("addUsuario");
-                }
 
-                self.delete = function (parent, id) {
-                   self.list.create(self.remover.get(id));
-                }
+                self.addCustomer = function () {
+                    oj.Router.rootInstance.go("addUsuario");
+                };
+
+                self.editCustomer = function (customerId) {
+                    oj.Router.rootInstance.store(customerId);
+                    oj.Router.rootInstance.go("editUsuario");
+                };
+
+                self.deleteCustomer = function (parent, customerId) {
+                    self.customerToSynchPromise = parent.deletaa.get(customerId);
+                    self.customerToSynchPromise.then(function (customerToSynch) {
+                        customerToSynch.destroy({wait: true});
+                    });
+                };
+
+                // Below are a subset of the ViewModel methods invoked by the ojModule binding
+                // Please reference the ojModule jsDoc for additionaly available methods.
+
+                /**
+                 * Optional ViewModel method invoked when this ViewModel is about to be
+                 * used for the View transition.  The application can put data fetch logic
+                 * here that can return a Promise which will delay the handleAttached function
+                 * call below until the Promise is resolved.
+                 * @param {Object} info - An object with the following key-value pairs:
+                 * @param {Node} info.element - DOM element or where the binding is attached. This may be a 'virtual' element (comment node).
+                 * @param {Function} info.valueAccessor - The binding's value accessor.
+                 * @return {Promise|undefined} - If the callback returns a Promise, the next phase (attaching DOM) will be delayed until
+                 * the promise is resolved
+                 */
+                self.handleActivated = function (info) {
+                    // Implement if needed
+                };
+
+                /**
+                 * Optional ViewModel method invoked after the View is inserted into the
+                 * document DOM.  The application can put logic that requires the DOM being
+                 * attached here.
+                 * @param {Object} info - An object with the following key-value pairs:
+                 * @param {Node} info.element - DOM element or where the binding is attached. This may be a 'virtual' element (comment node).
+                 * @param {Function} info.valueAccessor - The binding's value accessor.
+                 * @param {boolean} info.fromCache - A boolean indicating whether the module was retrieved from cache.
+                 */
+                self.handleAttached = function (info) {
+                    // Implement if needed
+                };
+
+
+                /**
+                 * Optional ViewModel method invoked after the bindings are applied on this View. 
+                 * If the current View is retrieved from cache, the bindings will not be re-applied
+                 * and this callback will not be invoked.
+                 * @param {Object} info - An object with the following key-value pairs:
+                 * @param {Node} info.element - DOM element or where the binding is attached. This may be a 'virtual' element (comment node).
+                 * @param {Function} info.valueAccessor - The binding's value accessor.
+                 */
+                self.handleBindingsApplied = function (info) {
+                    // Implement if needed
+                };
+
+                /*
+                 * Optional ViewModel method invoked after the View is removed from the
+                 * document DOM.
+                 * @param {Object} info - An object with the following key-value pairs:
+                 * @param {Node} info.element - DOM element or where the binding is attached. This may be a 'virtual' element (comment node).
+                 * @param {Function} info.valueAccessor - The binding's value accessor.
+                 * @param {Array} info.cachedNodes - An Array containing cached nodes for the View if the cache is enabled.
+                 */
+                self.handleDetached = function (info) {
+                    // Implement if needed
+                };
             }
-            return new TabelaModel();
-        });
+
+            /*
+             * Returns a constructor for the ViewModel so that the ViewModel is constrcuted
+             * each time the view is displayed.  Return an instance of the ViewModel if
+             * only one instance of the ViewModel is needed.
+             */
+            return new CustomerViewModel();
+        }
+);
 
