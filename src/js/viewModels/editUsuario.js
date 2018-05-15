@@ -5,9 +5,9 @@
 /*
  * Your customer ViewModel code goes here
  */
-define(['ojs/ojcore', 'knockout', 'factories/customerController', 'jquery', 'ojs/ojmodel', 'ojs/ojbutton',
+define(['ojs/ojcore', 'knockout', 'factories/customerController', 'jquery','sweetalert', 'ojs/ojmodel', 'ojs/ojbutton',
     'ojs/ojinputtext', 'ojs/ojinputnumber'],
-        function (oj, ko, customerController,$) {
+        function (oj, ko, customerController,$,swal) {
 
             function EditCustomerViewModel() {
                 var self = this;
@@ -49,12 +49,14 @@ define(['ojs/ojcore', 'knockout', 'factories/customerController', 'jquery', 'ojs
                         self.update.save(self.customerModel().toJSON(), {
                             contentType: 'application/json',
                            
-                            success: function (response) {
+                            success: function (response,data) {
 
                                 resolve();
                                 
+                                 swal(data.mensagem,"", "success");
+                                
                                  oj.Router.rootInstance.store(-1);
-                                 oj.Router.rootInstance.go("customers");
+                                 oj.Router.rootInstance.go("tabela");
 
                                 busyContext.whenReady().then(function () {
                                     self.saveBtnBusyCheck(!busyContext.isReady());

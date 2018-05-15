@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-define(['ojs/ojcore', 'knockout', 'factories/customerController', 'jquery', 'ojs/ojmodel', 'ojs/ojcollectiontabledatasource',
+define(['ojs/ojcore', 'knockout', 'factories/customerController', 'jquery','sweetalert', 'ojs/ojmodel', 'ojs/ojcollectiontabledatasource',
     'ojs/ojtable', 'ojs/ojbutton', 'ojs/ojpagingcontrol'],
-        function (oj, ko, customerController) {
+        function (oj, ko, customerController, $, ) {
 
             function CustomerViewModel() {
                 var self = this;
@@ -38,7 +38,17 @@ define(['ojs/ojcore', 'knockout', 'factories/customerController', 'jquery', 'ojs
                 self.deleteCustomer = function (parent, customerId) {
                     self.customerToSynchPromise = parent.deletaa.get(customerId);
                     self.customerToSynchPromise.then(function (customerToSynch) {
-                        customerToSynch.destroy({wait: true});
+                        customerToSynch.destroy({wait: true, success: function (response,data) {
+                            
+                            
+                            // lib externa para exibir mensagens/alertas
+                            /*
+                             * https://docs.oracle.com/middleware/jet310/jet/developer/GUID-EC40DF3C-57FB-4919-A066-73E573D66B67.htm#JETDG-GUID-EC40DF3C-57FB-4919-A066-73E573D66B67
+                             */
+                            swal(data.mensagem,"", "error");
+                            oj.Router.rootInstance.store(-1);
+                            oj.Router.rootInstance.go("tabela");
+                        }});
                     });
                 };
 
