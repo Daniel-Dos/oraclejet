@@ -4,7 +4,10 @@
             "attributes": {
                 "data-bind": {}
             }
-        }
+        },
+        "oj-label": {},
+        "oj-input-text": {},
+        "oj-buttonset-many": {}
     },
     "attributes": {}
 }
