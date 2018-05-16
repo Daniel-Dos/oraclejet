@@ -23,7 +23,7 @@ define(['ojs/ojcore'], function (oj) {
         createCustomerCollection: function () {
             var Customers = oj.Collection.extend({
                 url: this.serviceURL + 'consultar',
-                fetchSize: 10,
+//                fetchSize: 10,
                 model: this.createCustomerModel(),
                 idAttribute: "id"
             });

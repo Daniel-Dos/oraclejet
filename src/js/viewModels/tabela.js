@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 define(['ojs/ojcore', 'knockout', 'factories/customerController', 'jquery', 'sweetalert', 'ojs/ojmodel', 'ojs/ojcollectiontabledatasource',
-    'ojs/ojtable', 'ojs/ojbutton', 'ojs/ojpagingcontrol'],
+    'ojs/ojtable', 'ojs/ojbutton'],
         function (oj, ko, customerController, $) {
 
             function CustomerViewModel() {
@@ -17,13 +17,15 @@ define(['ojs/ojcore', 'knockout', 'factories/customerController', 'jquery', 'swe
                 self.customers(new oj.CollectionTableDataSource(self.list));
 
                 self.initialize = function (params) {
+                    self.list.refresh();
+                    
                     var customerId = oj.Router.rootInstance.retrieve();
                     if (customerId !== undefined && customerId !== null) {
                         self.customerToSynchPromise = self.list.get(customerId);
-                        self.customerToSynchPromise.then(function (customerToSynch) {
-                            customerToSynch.fetch();
-                        });
-                    self.list.refresh();
+//                        self.customerToSynchPromise.then(function (customerToSynch) {
+//                            customerToSynch.fetch();
+//                        });
+                    self.list.fetch();
                     }
                 };
 
