@@ -57,6 +57,7 @@ define(['ojs/ojcore', 'knockout', 'factories/customerController', 'jquery','swee
                                 
                                  oj.Router.rootInstance.store(-1);
                                  oj.Router.rootInstance.go("tabela");
+                                 
 
                                 busyContext.whenReady().then(function () {
                                     self.saveBtnBusyCheck(!busyContext.isReady());

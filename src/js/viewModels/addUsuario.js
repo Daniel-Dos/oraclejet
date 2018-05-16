@@ -13,7 +13,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'factories/customerController','swee
                 self.list = ko.observable();
 
                  // inicializa
-                this.initialize = function () {
+                self.initialize = function () {
                     self.list = customerController.createCustomerCollection();
                     self.modelo(customerController.createCustomerModel());
                 };
